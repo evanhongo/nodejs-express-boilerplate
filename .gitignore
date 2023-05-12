@@ -1,0 +1,13 @@
+# dependencies
+node_modules
+*.gql
+
+# production
+build
+
+# environment variables
+.env
+
+# log
+*.log
+logs
