@@ -11,9 +11,10 @@ import traceHandler from "@/controller/middleware/traceHandler";
 import errorHandler from "@/controller/middleware/errorHandler";
 import handleGraphQL from "@/controller/middleware/handleGraphQL";
 import metricsHandler from "@/controller/middleware/metricsHandler";
+import docsRouter from "@/controller/docs";
 import { initializeDatabase } from "@/pkg/db";
 import logger from "@/pkg/logger";
-import { PORT } from "@/config";
+import { NODE_ENV, PORT } from "@/config";
 
 const main = async () => {
   try {
@@ -55,6 +56,9 @@ const main = async () => {
 
   //await handleAuthentication(app);
   await handleGraphQL(app);
+
+  if (NODE_ENV === "development")
+    app.use("/docs", docsRouter)
 
   app.use(errorHandler);
 
