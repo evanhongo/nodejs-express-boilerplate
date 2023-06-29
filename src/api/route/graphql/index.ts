@@ -9,13 +9,15 @@ import {
 } from "@apollo/server/plugin/landingPage/default";
 import { graphqlUploadExpress } from "graphql-upload";
 
-import { buildContext } from "@/controller/graphql";
-import { Context } from "@/controller/graphql/context";
-import getGraphqlSchema from "@/controller/graphql/getGraphqlSchema";
+import buildContext from "./buildContext";
+import { Context } from "./context";
+import getGraphqlSchema from "./getGraphqlSchema";
 import { NODE_ENV } from "@/config";
 
-const handleGraphQL = async (app: express.Express) => {
+const createRouter = async () => {
   const schema = await getGraphqlSchema();
+  const router = express.Router();
+  const app = express();
   const httpServer = http.createServer(app);
   const apolloServer = new ApolloServer<Context>({
     schema,
@@ -33,13 +35,15 @@ const handleGraphQL = async (app: express.Express) => {
 
   await apolloServer.start();
   app.use(
-    "/graphql",
+    "/",
     expressMiddleware(apolloServer, {
       context: async ({ req, res }) => buildContext({ req, res })
     })
   );
 
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  router.use("/graphql", app);
+  return router;
 };
 
-export default handleGraphQL;
+export default createRouter;

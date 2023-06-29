@@ -11,3 +11,6 @@ build
 # log
 *.log
 logs
+
+# IDE
+.vscode

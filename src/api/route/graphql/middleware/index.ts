@@ -5,9 +5,9 @@ import logger from "@/pkg/logger";
 
 export const ErrorInterceptor: MiddlewareFn<Context> = async (_, next) => {
   try {
-    return await next();
+    return next();
   } catch (err) {
-    logger.error(err);
+    logger.error(err.toString());
     throw err;
   }
 };

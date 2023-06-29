@@ -8,13 +8,13 @@ import { Strategy as FacebookStrategy } from "passport-facebook";
 import { Strategy as LineStrategy } from "passport-line-auth";
 import { User } from "@/model/user";
 
-/*const handleAuthentication = async (server: express.Express) => {
+/*const handleAuthentication = async (router: express.Router) => {
   //for traditional login
   const { default: cr } = await import("connect-redis");
   const RedisStore = cr(session);
   const redisClient = redis.createClient();
 
-  server.use(
+  router.use(
     session({
       name: "sessionID",
       secret: "OMG",
@@ -30,8 +30,8 @@ import { User } from "@/model/user";
   );
 
   // for line and facebook login
-  server.use(passport.initialize());
-  server.use(passport.session());
+  router.use(passport.initialize());
+  router.use(passport.session());
   passport.serializeUser((user: any, done) => {
     done(null, user.id);
   });
@@ -145,7 +145,7 @@ import { User } from "@/model/user";
 
   passport.use(new LineStrategy(lineOptions, lineVerifyFunction));
 
-  server.get(
+  router.get(
     "/auth/facebook",
     passport.authenticate("facebook", {
       session: false,
@@ -153,7 +153,7 @@ import { User } from "@/model/user";
     })
   );
 
-  server.get("/auth/facebook/callback", (req, res, next) => {
+  router.get("/auth/facebook/callback", (req, res, next) => {
     passport.authenticate(
       "facebook",
       {
@@ -180,9 +180,9 @@ import { User } from "@/model/user";
     )(req, res, next);
   });
 
-  server.get("/auth/line", passport.authenticate("line"));
+  router.get("/auth/line", passport.authenticate("line"));
 
-  server.get("/auth/line/callback", (req, res, next) => {
+  router.get("/auth/line/callback", (req, res, next) => {
     passport.authenticate(
       "line",
       {
@@ -207,7 +207,7 @@ import { User } from "@/model/user";
     )(req, res, next);
   });
 
-  server.use("/graphql", (req: any, res, next) => {
+  router.use("/graphql", (req: any, res, next) => {
     passport.authenticate("jwt", { session: false }, (err, viewer) => {
       if (viewer) {
         req.viewer = viewer;

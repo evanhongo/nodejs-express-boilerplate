@@ -5,6 +5,7 @@ import rTracer from "cls-rtracer";
 import { LOG_LEVEL } from "@/config";
 
 interface ILogger {
+  debug(msg: string): void;
   info(msg: string): void;
   warn(msg: string): void;
   error(msg: string): void;
@@ -37,6 +38,10 @@ export class WinstonLogger implements ILogger {
       ),
       transports: [new transports.Console()]
     });
+  }
+
+  debug(msg: string): void {
+    this.logger.child({ traceId: rTracer.id() }).debug(msg);
   }
 
   info(msg: string): void {

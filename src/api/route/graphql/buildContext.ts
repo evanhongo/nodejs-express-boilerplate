@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { Context } from "@/controller/graphql/context";
+import { Context } from "./context";
 import dataloader from "./dataloaders";
 
 const buildContext = ({
@@ -11,4 +11,4 @@ const buildContext = ({
   res: Response;
 }): Context => ({ req, res, dataloader });
 
-export { buildContext };
+export default buildContext;

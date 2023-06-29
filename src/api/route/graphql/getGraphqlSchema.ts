@@ -1,7 +1,7 @@
 import { buildSchema } from "type-graphql";
 
-import resolvers from "@/controller/graphql/resolvers";
-import { ErrorInterceptor } from "@/controller/graphql/middleware";
+import resolvers from "./resolvers";
+import { ErrorInterceptor } from "./middleware";
 import container from "@/pkg/di/inversify.config";
 
 export default async function getGraphqlSchema() {

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 
 dotenv.config(/*{path: path.resolve(process.cwd(),".env")}*/).parsed ?? {};
-export const LOG_LEVEL = process.env.LOG_LEVEL ?? "info";
+export const LOG_LEVEL = process.env.LOG_LEVEL ?? "debug";
 export const NODE_ENV = process.env.NODE_ENV ?? "development";
 export const PORT = process.env.PORT ?? "4000";
 export const DB_URL =
