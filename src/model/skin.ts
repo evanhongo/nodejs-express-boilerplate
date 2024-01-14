@@ -3,7 +3,7 @@ import { prop as Property, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 
 import { Doll } from "./doll";
-import mongooseInstance from "@/pkg/db";
+import mongooseInstance from "@/pkg/mongodb";
 
 @ObjectType()
 export class Skin {

@@ -2,7 +2,7 @@ import { ObjectType, Field, ID } from "type-graphql";
 import { prop as Property, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 
-import mongooseInstance from "@/pkg/db";
+import mongooseInstance from "@/pkg/mongodb";
 
 @ObjectType()
 export class User {

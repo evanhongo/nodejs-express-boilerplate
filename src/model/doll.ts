@@ -4,7 +4,7 @@ import { prop as Property, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 
 import { Skin } from "./skin";
-import mongooseInstance from "@/pkg/db";
+import mongooseInstance from "@/pkg/mongodb";
 
 @ObjectType()
 class Skill {

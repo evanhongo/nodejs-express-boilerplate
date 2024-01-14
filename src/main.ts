@@ -2,7 +2,7 @@ import "reflect-metadata";
 import express from "express";
 
 import createRouter from "@/api/route";
-import { initializeDatabase } from "@/pkg/db";
+import { initializeDatabase } from "@/pkg/mongodb";
 import logger from "@/pkg/logger";
 import { PORT } from "@/config";
 
