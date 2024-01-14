@@ -1,15 +1,9 @@
-import express, { Request, Response } from "express";
+import express from "express";
 
-import { handleSuccess } from "@/api/httputil";
+import MetricsHandler from "./handler";
 
 const router = express.Router();
-
-const metricsHandler = (_: Request, res: Response) => {
-  return handleSuccess(res, {
-    mem: process.memoryUsage(),
-    uptime: process.uptime()
-  });
-};
+const handler = new MetricsHandler();
 
 router
   /**
@@ -22,6 +16,6 @@ router
    *         description: Returns `pong`.
    */
   .get("/ping", (_, res) => res.send("pong"))
-  .get("/metrics", metricsHandler);
+  .get("/metrics", handler.getMetrics);
 
 export default router;
