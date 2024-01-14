@@ -4,6 +4,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 
 const router = express.Router();
 const swaggerSpec = swaggerJsdoc({
+  failOnErrors: true,
   definition: {
     openapi: "3.0.0",
     info: {
@@ -11,9 +12,9 @@ const swaggerSpec = swaggerJsdoc({
       version: "1.0.0"
     }
   },
-  apis: ["./api/route/*.ts"]
+  apis: ["./src/api/route/**/*.ts"]
 });
 
-router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+router.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default router;

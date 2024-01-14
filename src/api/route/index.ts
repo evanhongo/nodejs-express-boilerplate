@@ -33,13 +33,13 @@ const createRouter = async () => {
       //   }
       // })
     )
-    .use(health);
+    .use("/health", health);
 
-  if (NODE_ENV === "development") router.use(docs);
+  if (NODE_ENV === "development") router.use("/docs", docs);
 
   const graphql = await createGraphqlRouter();
 
-  router.use(graphql);
+  router.use("/graphql", graphql);
 
   return router;
 };

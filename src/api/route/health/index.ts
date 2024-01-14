@@ -11,8 +11,16 @@ const metricsHandler = (_: Request, res: Response) => {
   });
 };
 
-//for health check
 router
+  /**
+   * @openapi
+   * /health/ping:
+   *   get:
+   *     description: health check
+   *     responses:
+   *       200:
+   *         description: Returns `pong`.
+   */
   .get("/ping", (_, res) => res.send("pong"))
   .get("/metrics", metricsHandler);
 

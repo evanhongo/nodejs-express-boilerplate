@@ -34,15 +34,15 @@ const createRouter = async () => {
   });
 
   await apolloServer.start();
-  app.use(
+  router.use(
     "/",
     expressMiddleware(apolloServer, {
       context: async ({ req, res }) => buildContext({ req, res })
     })
   );
 
-  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
-  router.use("/graphql", app);
+  router.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  // router.use("/graphql", app);
   return router;
 };
 
