@@ -5,6 +5,7 @@ import { ObjectId } from "mongodb";
 
 import { Skin } from "./skin";
 import mongooseInstance from "@/pkg/mongodb";
+import { nullable } from "zod";
 
 @ObjectType()
 class Skill {
@@ -87,7 +88,7 @@ export class Doll {
 
   @Field((type) => String)
   @Property({ type: () => String })
-  team: string;
+  team?: string;
 
   @Field((type) => [String])
   @Property({ type: () => [String] })
@@ -114,20 +115,19 @@ export class Doll {
   avatarUri: string;
 
   @Field((type) => [Skin])
-  @Property({ type: () => [Skin], default: [] })
-  skins: Skin[];
+  skins?: Skin[];
 
   @Field((type) => [Skill])
   @Property({ type: () => [Skill], default: [] })
-  skills: Skill[];
+  skills?: Skill[];
 
   @Field((type) => Attribute)
   @Property({ type: () => Attribute })
-  attribute: Attribute;
+  attribute?: Attribute;
 
   @Field((type) => Gift)
   @Property({ type: () => Gift })
-  gift: Gift;
+  gift?: Gift;
 }
 
 @ObjectType()

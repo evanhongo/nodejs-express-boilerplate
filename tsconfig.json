@@ -1,4 +1,4 @@
-{ 
+{
   "include": [
     "src"
   ],
@@ -27,7 +27,7 @@
     "experimentalDecorators": true,
     "sourceMap": false,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "allowJs": true,
