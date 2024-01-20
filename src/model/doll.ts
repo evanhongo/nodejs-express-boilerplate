@@ -5,7 +5,6 @@ import { ObjectId } from "mongodb";
 
 import { Skin } from "./skin";
 import mongooseInstance from "@/pkg/mongodb";
-import { nullable } from "zod";
 
 @ObjectType()
 class Skill {

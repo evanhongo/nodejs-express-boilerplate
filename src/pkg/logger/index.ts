@@ -2,7 +2,7 @@ import { createLogger, format, transports, Logger } from "winston";
 import { TransformableInfo } from "logform";
 import rTracer from "cls-rtracer";
 
-import { LOG_LEVEL } from "@/config";
+import { NODE_ENV, LOG_LEVEL } from "@/config";
 
 interface ILogger {
   debug(msg: string): void;
@@ -28,7 +28,7 @@ export class WinstonLogger implements ILogger {
       handleExceptions: true,
       format: format.combine(
         format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-        format.json(),
+        format.json({ space: NODE_ENV === "development" ? 2 : 0 }),
         format((info: TransformableInfo) => {
           Object.keys(info).forEach(
             (key) => info[key] === undefined && delete info[key]

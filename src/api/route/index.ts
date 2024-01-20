@@ -7,6 +7,7 @@ import bodyParser from "@/api/middleware/bodyParser";
 import rateLimiter from "@/api/middleware/rateLimiter";
 import logHandler from "@/api/middleware/logHandler";
 import traceHandler from "@/api/middleware/traceHandler";
+import exceptionHandler from "@/api/middleware/exceptionHandler";
 import health from "./health";
 import docs from "./docs";
 import createGraphqlRouter from "./graphql";
@@ -38,8 +39,9 @@ const createRouter = async () => {
   if (NODE_ENV === "development") router.use("/docs", docs);
 
   const graphql = await createGraphqlRouter();
-
   router.use("/graphql", graphql);
+
+  router.use(exceptionHandler);
 
   return router;
 };
