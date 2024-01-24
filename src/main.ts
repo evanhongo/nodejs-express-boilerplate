@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import express from "express";
 
+import WebServer from "@/api/main";
 import createRouter from "@/api/route";
 import { initializeDatabase } from "@/pkg/mongodb";
 import logger from "@/pkg/logger";
@@ -15,34 +15,10 @@ const main = async () => {
     process.exit();
   }
 
-  const app = express();
-  app
-    //Removes the X-Powered-By header, which is set by default in some frameworks
-    .disable("x-powered-by")
-    // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
-    // see https://expressjs.com/en/guide/behind-proxies.html
-    .set("trust proxy", 1);
-
+  const server = new WebServer(parseInt(PORT));
   const router = await createRouter();
-  app.use("/", router);
-
-  const server = app.listen(PORT, () =>
-    logger.info(
-      `Server ready at http://localhost:${PORT}, Graphql playground at http://localhost:${PORT}/graphql`
-    )
-  );
-
-  process.once("SIGINT", function () {
-    logger.warn("Caught SIGINT, shutting down.");
-    server.close((err) => {
-      if (err) {
-        logger.error("There is something wrong when shutting down");
-        process.exit(1);
-      }
-      logger.info("Gracefully shut down!");
-      process.exit(0);
-    });
-  });
+  server.registerRouter(router);
+  server.start();
 };
 
 main();

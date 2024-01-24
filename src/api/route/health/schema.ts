@@ -2,9 +2,9 @@ import { z } from "zod";
 
 import ISchema from "@/pkg/schema/interface";
 
-export class MetricsRequestSchema implements ISchema {
+export class PingRequestSchema implements ISchema {
   private schema = z.object({
-    id: z.string()
+    hello: z.string().min(1)
   });
 
   constructor() {

@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 
-import ISchema from "@/pkg/schema/interface";
 import { success } from "@/api/httputil";
+import ISchema from "@/pkg/schema/interface";
 import perfMeasure from "@/pkg/util/perfMeasure";
 
-export default class MetricsHandler {
+export class PingHandler {
   private schema: ISchema;
 
   constructor(schema: ISchema) {
@@ -28,7 +28,9 @@ export default class MetricsHandler {
       );
     }
   }
+}
 
+export class MetricsHandler {
   @perfMeasure("test_indicator")
   async getMetrics(_: Request, res: Response) {
     return res.json(

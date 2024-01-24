@@ -1,10 +1,11 @@
 import express from "express";
 
-import MetricsHandler from "./handler";
-import { MetricsRequestSchema } from "./schema";
+import { PingHandler, MetricsHandler } from "./handler";
+import { PingRequestSchema } from "./schema";
 
 const router = express.Router();
-const handler = new MetricsHandler(new MetricsRequestSchema());
+const pingHandler = new PingHandler(new PingRequestSchema());
+const metricsHandler = new MetricsHandler();
 
 router
   /**
@@ -17,6 +18,7 @@ router
    *         description: Returns `pong`.
    */
   .get("/ping", (_, res) => res.send("pong"))
-  .get("/metrics", handler.validateRequest, handler.getMetrics);
+  .post("/ping", pingHandler.validateRequest, (_, res) => res.send("pong"))
+  .get("/metrics", metricsHandler.getMetrics);
 
 export default router;
