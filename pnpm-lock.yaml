@@ -15,8 +15,8 @@ dependencies:
     specifier: ^0.14.0
     version: 0.14.0
   cls-rtracer:
-    specifier: ^2.6.2
-    version: 2.6.2
+    specifier: ^2.6.3
+    version: 2.6.3
   compression:
     specifier: ^1.7.4
     version: 1.7.4
@@ -3598,11 +3598,11 @@ packages:
       shallow-clone: 3.0.1
     dev: true
 
-  /cls-rtracer@2.6.2:
-    resolution: {integrity: sha512-9TYlTXQkjaytD2oe+WCEAXArgqlrHzvVW5WnwpUgenuY8D3rMfJVgsCogY77YHM9R3dUOMv3XpKRRn+LQnrUEQ==}
+  /cls-rtracer@2.6.3:
+    resolution: {integrity: sha512-O7M/m2M/KfT9v+q7ka9nmsadS67ce9P8+1Zgm6VFamK56oFd1iCoJ9m8hYKUQpK4+RofyaexxHJlOBkxqCDs3Q==}
     engines: {node: '>=12.17.0 <13.0.0 || >=13.14.0 <14.0.0 || >=14.0.0'}
     dependencies:
-      uuid: 8.3.2
+      uuid: 9.0.0
     dev: false
 
   /cluster-key-slot@1.1.2:
@@ -7278,7 +7278,9 @@ packages:
   /uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    requiresBuild: true
     dev: false
+    optional: true
 
   /uuid@9.0.0:
     resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
