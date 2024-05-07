@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { success } from "@/api/httputil";
 import ISchema from "@/pkg/schema/interface";
 import perfMeasure from "@/pkg/util/perfMeasure";
-import { CustomError, INVALID_REQUEST } from "@/pkg/util/error";
+import { ErrorNotFound } from "@/pkg/util/error";
 
 export class PingHandler {
   private schema: ISchema;
@@ -18,7 +18,7 @@ export class PingHandler {
       req.body = this.schema.parse(req.body);
       return next();
     } catch (err) {
-      return next(new CustomError(err.message, INVALID_REQUEST));
+      return next(new ErrorNotFound(err.message));
     }
   }
 }
